@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,17 +8,20 @@
 </head>
 <body>
 <div id="canvas-wrap">
-  <object data="monkey.svg" type="image/svg+xml" id="svg-object"></object>
-  <div data-htmler-blocks style="transform:scale(0.512987);transform-origin:left top;position:absolute;top:0;left:0;width:1050px;height:900px;pointer-events:none;">
-    <div class="slider" id="slider-left"><div class="slider-handle"></div></div>
-    <div class="slider" id="slider-right"><div class="slider-handle"></div></div>
+  <object data="monkey.svg" type="image/svg+xml" id="monkey-svg" style="width:1050px;height:900px;"></object>
+  <div data-htmler-blocks="" style="transform:scale(0.512987);transform-origin:left top;position:absolute;top:0;left:0;width:1050px;height:900px;pointer-events:none;">
+    <div class="slider" id="slider-left" style="left:264px;top:772px;"><div class="slider-handle"></div></div>
+    <div class="slider" id="slider-right" style="left:264px;top:772px;"><div class="slider-handle"></div></div>
+  </div>
+  <div id="controls">
+    <button id="btn-op">×</button>
+    <button id="btn-reset" disabled>Reset</button>
+  </div>
+  <div id="footer">
+    Baseado no brinquedo de 1916 de William Henry Robertson
   </div>
 </div>
-<div class="controls">
-  <button id="btn-op">×</button>
-  <button id="btn-reset" disabled>Reset</button>
-</div>
-<p class="footer">Baseado no brinquedo de 1916 de William Henry Robertson</p>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <script src="script.js"></script>
 </body>
