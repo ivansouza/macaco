@@ -14,7 +14,6 @@
     <div id="coords" style="font-size:11px;color:#666;margin-top:2px;font-family:monospace;"></div>
   </div>
   <div id="canvas-wrap">
-    <object id="monkey-svg" type="image/svg+xml" data="assets/monkey.svg" style="width:100%;height:100%;pointer-events:none;"></object>
     <div data-htmler-blocks="" style="transform-origin:left top;position:absolute;top:0;left:0;width:1050px;height:900px;pointer-events:none;">
       <div class="slider" id="slider-left" style="left:264px;top:772px;"><div class="slider-handle"></div></div>
       <div class="slider" id="slider-right" style="left:264px;top:772px;"><div class="slider-handle"></div></div>
@@ -27,6 +26,25 @@
   <div id="footer">Consul, the Educated Monkey &mdash; 1916 William Henry Robertson</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-<script src="assets/js/script.js"></script>
+<script>
+// Carregar SVG externo e injetar inline
+fetch('assets/monkey.svg')
+  .then(function(r) { return r.text(); })
+  .then(function(svgText) {
+    var wrap = document.getElementById('canvas-wrap');
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(svgText, 'image/svg+xml');
+    var svg = doc.documentElement;
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.style.display = 'block';
+    wrap.insertBefore(svg, wrap.firstChild);
+    
+    // Inicializar script principal
+    var s = document.createElement('script');
+    s.src = 'assets/js/script.js';
+    document.body.appendChild(s);
+  });
+</script>
 </body>
 </html>
