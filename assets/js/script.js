@@ -213,6 +213,7 @@
       TweenMax.to(sliderRight, 0.5, { x: totalWidth, onUpdate: doUpdate });
     });
     
+    // Calcular scale do data-htmler-blocks baseado no SVG
     function updateBlocksScale() {
       var blocks = document.querySelector('[data-htmler-blocks]');
       if (blocks && svg) {
@@ -226,23 +227,15 @@
     updateBlocksScale();
     window.addEventListener('resize', updateBlocksScale);
     
+    // Forçar criação do _gsTransform
     TweenMax.set(sliderLeft, { x: 0 });
     TweenMax.set(sliderRight, { x: totalWidth });
+    // Garantir que o GSAP processou
     TweenMax.ticker.addEventListener('tick', function() {
       TweenMax.ticker.removeEventListener('tick', arguments.callee);
       doUpdate();
     });
   }
   
-  svgEl.addEventListener('load', init);
-  if (svgEl.contentDocument && svgEl.contentDocument.querySelector('svg')) {
-    init();
-  }
-  // Fallback: tentar inline
-  setTimeout(function() {
-    if (!svg) {
-      svg = canvas.querySelector('svg');
-      if (svg) setup();
-    }
-  }, 500);
+  init();
 })();
